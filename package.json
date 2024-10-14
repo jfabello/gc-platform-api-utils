@@ -1,7 +1,7 @@
 {
 	"name": "@jfabello/gc-platform-api-utils",
-	"version": "0.2.0",
-	"description": "Genesys Cloud platform API utilities.",
+	"version": "0.1.0",
+	"description": "Genesys Cloud platform API utilities for Node.js.",
 	"keywords": [
 		"genesys",
 		"cloud",
