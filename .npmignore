@@ -1,0 +1,6 @@
+.DS_Store
+node_modules
+package-lock.json
+publicapi-v2-latest.json
+/coverage
+*.test.js
