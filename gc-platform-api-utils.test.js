@@ -33,7 +33,7 @@ describe("Genesys Cloud platform API utilities loadGCPlatformAPISpecFromCloud() 
 		}
 	});
 
-	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid argument should throw a TypeError error", async () => {
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid Genesys Cloud region argument type should throw a TypeError error", async () => {
 		expect.assertions(4);
 		try {
 			const gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud(1234);
@@ -57,7 +57,7 @@ describe("Genesys Cloud platform API utilities loadGCPlatformAPISpecFromCloud() 
 		}
 	});
 
-	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid Genesys Cloud region should throw a RangeError error", async () => {
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid Genesys Cloud region argument should throw a RangeError error", async () => {
 		expect.assertions(1);
 		try {
 			let gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud("not-a-region");
@@ -66,12 +66,62 @@ describe("Genesys Cloud platform API utilities loadGCPlatformAPISpecFromCloud() 
 		}
 	});
 
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid timeout argument type should throw a TypeError error", async () => {
+		expect.assertions(3);
+		try {
+			let gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud(GC_REGION, { timeout: "60000" });
+		} catch (error) {
+			expect(error).toBeInstanceOf(TypeError);
+		}
+
+		try {
+			let gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud(GC_REGION, { timeout: 30000.5 });
+		} catch (error) {
+			expect(error).toBeInstanceOf(TypeError);
+		}
+
+		try {
+			let gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud(GC_REGION, { timeout: [60 * 1000] });
+		} catch (error) {
+			expect(error).toBeInstanceOf(TypeError);
+		}
+	});
+
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid timeout argument should throw a RangeError error", async () => {
+		expect.assertions(2);
+		try {
+			let gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud(GC_REGION, { timeout: -60 * 1000 });
+		} catch (error) {
+			expect(error).toBeInstanceOf(RangeError);
+		}
+
+		try {
+			let gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud(GC_REGION, { timeout: 0 });
+		} catch (error) {
+			expect(error).toBeInstanceOf(RangeError);
+		}
+	});
+
 	test(
-		"An attempt to call the loadGCPlatformAPISpecFromCloud() function with an valid Genesys Cloud region should return an object",
+		"An attempt to call the loadGCPlatformAPISpecFromCloud() function with an valid Genesys Cloud region argument should return an object",
 		async () => {
 			expect.assertions(1);
 			try {
 				let gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud(GC_REGION);
+				expect(typeof gcPlatformAPISpec).toBe("object");
+			} catch (error) {
+				throw error; // This should not happen
+			}
+		},
+		TIMEOUT
+	);
+
+	test(
+		"An attempt to call the loadGCPlatformAPISpecFromCloud() function with valid Genesys Cloud region and timeout arguments should return an object",
+		async () => {
+			expect.assertions(1);
+			try {
+				let gcPlatformAPISpec = await gcPlatformAPIUtils.loadGCPlatformAPISpecFromCloud(GC_REGION, { timeout: 120 * 1000 });
 				expect(typeof gcPlatformAPISpec).toBe("object");
 			} catch (error) {
 				throw error; // This should not happen
@@ -167,7 +217,9 @@ describe("Genesys Cloud platform API utilities generateMongoDBJSONSchemaFromGCPl
 		}
 	});
 
-	test("The generateMongoDBJSONSchemaFromGCPlatformAPIDefinition() function should be able to generate JSON schemas for all the definitions in the Genesys Cloud platform API specification", () => {
+	test(
+		"The generateMongoDBJSONSchemaFromGCPlatformAPIDefinition() function should be able to generate JSON schemas for all the definitions in the Genesys Cloud platform API specification",
+		() => {
 			expect.assertions(gcPlatformAPISpec.definitions.length);
 
 			for (const gcPlatformAPIDefinitionName in gcPlatformAPISpec.definitions)

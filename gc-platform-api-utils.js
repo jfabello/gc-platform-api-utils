@@ -20,17 +20,28 @@ constants.gcPlatformAPIDataTypes = ["object", "array", "string", "number", "inte
 constants.gcPlatformAPIDataFormats = ["date-time", "local-date-time", "date", "local-time", "float", "double", "int32", "int64", "uri", "url"];
 Object.freeze(constants);
 
+// Defaults
+const defaults = require("./defaults.js");
+
 // Regexes
 const regexes = {};
 regexes.DEFINITION_URI = /^#\/definitions\/(\w+)$/;
 Object.freeze(regexes);
 
-async function loadGCPlatformAPISpecFromCloud(gcRegion) {
+async function loadGCPlatformAPISpecFromCloud(gcRegion, { timeout = defaults.DEFAULT_HTTP_TIMEOUT } = {}) {
+	if (typeof timeout !== "number" || Number.isInteger(timeout) === false) {
+		throw new TypeError("The timeout argument type is not valid. It must be a positive integer");
+	}
+
+	if (timeout <= 0) {
+		throw new RangeError("The timeout argument is not valid. It must be a positive integer");
+	}
+
 	const gcRegionAPIURL = getGCRegionURLs(gcRegion).api;
 	let gcPlatformAPISpecURL = new URL("/api/v2/docs/swagger", gcRegionAPIURL);
 
 	for (let retry = 0; retry < 10; retry++) {
-		const httpRequest = new HTTPClient(gcPlatformAPISpecURL);
+		const httpRequest = new HTTPClient(gcPlatformAPISpecURL, { timeout: timeout });
 		const httpResponse = await httpRequest.makeRequest();
 
 		if (httpResponse.statusCode === 301) {
