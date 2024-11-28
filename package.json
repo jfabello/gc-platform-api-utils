@@ -1,0 +1,33 @@
+{
+	"name": "@jfabello/gc-platform-api-utils",
+	"version": "0.1.0",
+	"description": "Genesys Cloud platform API utilities for Node.js.",
+	"keywords": [
+		"genesys",
+		"cloud",
+		"platform",
+		"api",
+		"utilities",
+		"mongodb"
+	],
+	"license": "MIT",
+	"author": {
+		"name": "Juan F. Abello",
+		"email": "juan@jfabello.com"
+	},
+	"main": "src/gc-platform-api-utils.js",
+	"scripts": {
+		"test": "jest --watchAll --coverage"
+	},
+	"dependencies": {
+		"@jfabello/http-client": "^1.0.0"
+	},
+	"devDependencies": {
+		"@jest/globals": "^29.0.0",
+		"@jfabello/log-to-console": "^1.0.0",
+		"jest": "^29.0.0"
+	},
+	"engines": {
+		"node": ">=18"
+	}
+}
