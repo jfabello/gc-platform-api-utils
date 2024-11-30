@@ -1,12 +1,25 @@
 # Genesys Cloud platform API utilities for Node.js
 
-## Description
-
 The `gc-platform-api-utils` package provides utility functions to work with the Genesys Cloud platform API. It includes the following features:
 
 - Loading the Genesys Cloud platform API specification from the cloud as a JavaScript object.
 - Generating MongoDB JSON schemas for data validation from a Genesys Cloud platform API definition name. For example: "Queue", "AnalyticsConversation", and "AuditLogMessage".
 - Getting the Genesys Cloud URLs for an AWS region.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Loading the Genesys Cloud API specification from the cloud](#loading-the-genesys-cloud-api-specification-from-the-cloud)
+  - [Generating MongoDB JSON schemas for data validation](#generating-mongodb-json-schemas-for-data-validation)
+  - [Get the Genesys Cloud region URLs](#get-the-genesys-cloud-region-urls)
+- [`generateMongoDBJSONSchema()` function](#generatemongodbjsonschema-function)
+- [`getGCRegionURLs()` function](#getgcregionurls-function)
+- [`loadGCPlatformAPISpecFromCloud()` function](#loadgcplatformapispecfromcloud-function)
+- [`gcPlatformAPIErrors` object](#gcplatformapierrors-object)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
@@ -101,6 +114,7 @@ Gets the Genesys Cloud URLs (API, apps, and login) for the specified Genesys Clo
 ### Returns
 
 The Genesys Cloud region URLs object with the following properties:
+
 - `api`: The API server URL
 - `apps`: The Apps URL
 - `login`: The Auth server URL
@@ -110,7 +124,6 @@ The Genesys Cloud region URLs object with the following properties:
 - `ERROR_GC_REGION_TYPE_INVALID`: If the Genesys Cloud region is not a string.
 - `ERROR_GC_REGION_INVALID`: If the Genesys Cloud region is not a valid region.
 
-
 ## `loadGCPlatformAPISpecFromCloud()` function
 
 Loads the Genesys Cloud Platform API specification from the Genesys Cloud servers.
@@ -119,7 +132,7 @@ Loads the Genesys Cloud Platform API specification from the Genesys Cloud server
 
 - `gcRegion`: The Genesys Cloud region to load the API specification from.
 - `options`: Optional parameters.
-	- `timeout`: The optional HTTP request timeout in milliseconds. The default is 60 seconds.
+  - `timeout`: The optional HTTP request timeout in milliseconds. The default is 60 seconds.
 
 ### Returns
 
@@ -132,6 +145,29 @@ A promise that resolves to an object with the Genesys Cloud Platform API specifi
 - `ERROR_TIMEOUT_OUT_OF_BOUNDS`: If the `timeout` argument is less than 1 milliseconds.
 - `ERROR_HTTP_CLIENT_ERROR`: If there is an error with the HTTP client.
 - `ERROR_GENESYS_CLOUD_SERVICES_ERROR`: If there is an error with the Genesys Cloud services.
+
+## `gcPlatformAPIErrors` object
+
+This object contains all the errors tha can be thrown by the Genesys Cloud Platform API utilities functions.
+
+| Class Name                                                   | Message                                                      | Parent Class     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------- |
+| `ERROR_GC_REGION_TYPE_INVALID`                               | The Genesys Cloud region type is not valid, it should be a string. | `TypeError`      |
+| `ERROR_GC_REGION_INVALID`                                    | The Genesys Cloud region ${gcRegion} is not valid.           | `TypeError`      |
+| `ERROR_TIMEOUT_TYPE_INVALID`                                 | The timeout type is not valid, it should be a positive integer. | `TypeError`      |
+| `ERROR_TIMEOUT_OUT_OF_BOUNDS`                                | The timeout type is not valid, it should be a positive integer. | `RangeError`     |
+| `ERROR_GENESYS_CLOUD_SERVICES_ERROR`                         | An error occurred on the Genesys Cloud services side.        | `Error`          |
+| `ERROR_HTTP_CLIENT_ERROR`                                    | An error occurred on the HTTP client side.                   | `Error`          |
+| `ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID`                    | Invalid Genesys Cloud platform API specification type, it must be an object. | `TypeError`      |
+| `ERROR_GC_PLATFORM_API_DEFINITION_TYPE_INVALID`              | Invalid Genesys Cloud platform API definition type, it must be an object. | `TypeError`      |
+| `ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID`         | Invalid Genesys Cloud platform API definition name type, it must be a string. | `TypeError`      |
+| `ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING`    | The Genesys Cloud platform API specification object is missing the "definitions" property. | `ReferenceError` |
+| `ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC`         | The definition "${definition}" was not found in the Genesys Cloud Platform API specification object. | `ReferenceError` |
+| `ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID`               | The URI "${definitionURI}" is not a valid Genesys Cloud platform API definition URI. | `ReferenceError` |
+| `ERROR_GC_PLATFORM_API_DEFINITION_FORMAT_PROPERTY_VALUE_INVALID` | The Genesys Cloud platform API definition "format" property value "${formatValue}" is not valid. | `RangeError`     |
+| `ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID` | The Genesys Cloud platform API definition "type" property value "${typeValue}" is not valid. | `RangeError`     |
+| `ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID`          | The Genesys Cloud platform API definition property "${property}" is not valid. | `RangeError`     |
+| `ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID` | The Genesys Cloud Platform API definition "additionalProperties" property value type is not valid, it should be an object or a boolean. | `TypeError`      |
 
 ## Testing
 
@@ -165,5 +201,3 @@ Thank you for your understanding.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-
