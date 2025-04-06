@@ -1,6 +1,6 @@
 /**
+ * Genesys Cloud platform API utilities for Node.js.
  * @module jfabello/gc-platform-api-utils
- * @description Genesys Cloud platform API utilities for Node.js.
  * @license MIT
  * @author Juan F. Abello <juan@jfabello.com>
  */

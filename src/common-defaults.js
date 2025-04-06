@@ -1,6 +1,6 @@
 /**
+ * Genesys Cloud platform API utilities for Node.js common defaults.
  * @module gc-platform-api-utils-defaults
- * @description Genesys Cloud platform API utilities for Node.js common defaults.
  * @license MIT
  * @author Juan F. Abello <juan@jfabello.com>
  */

@@ -1,6 +1,6 @@
 /**
+ * Generate a MongoDB JSON schema from a Genesys Cloud Platform API definition function.
  * @module generate-mongodb-json-schema
- * @description Generate a MongoDB JSON schema from a Genesys Cloud Platform API definition function.
  * @license MIT
  * @author Juan F. Abello <juan@jfabello.com>
  */
@@ -9,7 +9,9 @@
 "use strict";
 
 // Constants
+
 const constants = {};
+
 constants.gcPlatformAPIDataTypesToBSONTypeMap = {
 	object: "object",
 	array: "array",
@@ -18,6 +20,7 @@ constants.gcPlatformAPIDataTypesToBSONTypeMap = {
 	integer: "long",
 	boolean: "bool"
 };
+
 constants.gcPlatformAPIDataFormatsToBSONTypeMap = {
 	"date-time": "date",
 	"local-date-time": "date",
@@ -30,6 +33,7 @@ constants.gcPlatformAPIDataFormatsToBSONTypeMap = {
 	"uri": "string",
 	"url": "string"
 };
+
 constants.ignoredGCPlatformAPIDefinitionKeys = [
 	"format", // Not actually ignored, just processed as part of the "type" property
 	"allowEmptyValue", // Not actually ignored, just processed as part of the "type" property
@@ -39,7 +43,9 @@ constants.ignoredGCPlatformAPIDefinitionKeys = [
 	"x-genesys-entity-type",
 	"x-genesys-search-fields"
 ];
+
 constants.passthroughGCPlatformAPIDefinitionKeys = ["minimum", "maximum", "minItems", "maxItems", "minLength", "maxLength", "pattern", "required", "uniqueItems", "enum", "description"];
+
 Object.freeze(constants);
 
 // Errors
@@ -47,15 +53,16 @@ const errors = require("./generate-mongodb-json-schema-errors.js");
 
 // Regexes
 const regexes = {};
+
 regexes.DEFINITION_URI = /^#\/definitions\/(\w+)$/;
+
 Object.freeze(regexes);
 
 /**
  * Generates a MongoDB JSON schema from a Genesys Cloud Platform API definition.
- *
- * @param {Object} gcPlatformAPISpec The Genesys Cloud Platform API specification object.
- * @param {string} gcPlatformAPIDefinitionName The name of the Genesys Cloud Platform API definition.
- * @returns {Object} The MongoDB JSON schema object.
+ * @param {object} gcPlatformAPISpec - The Genesys Cloud Platform API specification object.
+ * @param {string} gcPlatformAPIDefinitionName - The name of the Genesys Cloud Platform API definition.
+ * @returns {object} - The MongoDB JSON schema object.
  * @throws {ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID} If the Genesys Cloud Platform API specification is not an object.
  * @throws {ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING} If the Genesys Cloud Platform API specification does not have a "definitions" property.
  * @throws {ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID} If the Genesys Cloud Platform API definition name is not a string.
@@ -98,8 +105,8 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 
 	/**
 	 * Parses a Genesys Cloud Platform API definition object.
-	 * @param {Object} gcPlatformApiDefinition - The Genesys Cloud Platform API definition object.
-	 * @returns {Object} - The MongoDB JSON schema object.
+	 * @param {object} gcPlatformApiDefinition - The Genesys Cloud Platform API definition object.
+	 * @returns {object} - The MongoDB JSON schema object.
 	 */
 	function parseGCPlatformApiDefinition(gcPlatformApiDefinition) {
 		// Check the passed Genesys Cloud platform API definition argument

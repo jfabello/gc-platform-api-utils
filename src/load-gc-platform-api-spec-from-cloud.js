@@ -1,6 +1,6 @@
 /**
+ * Load the Genesys Cloud Platform API specification from the cloud function.
  * @module load-gc-platform-api-spec-from-cloud
- * @description Load the Genesys Cloud Platform API specification from the cloud function.
  * @license MIT
  * @author Juan F. Abello <juan@jfabello.com>
  */
@@ -23,7 +23,7 @@ const errors = require("./common-errors.js");
  * @param {string} gcRegion - The Genesys Cloud region to load the API specification from.
  * @param {object} [options] - Optional parameters.
  * @param {number} [options.timeout=defaults.DEFAULT_HTTP_TIMEOUT] - The HTTP request timeout in milliseconds. The default is 60 seconds.
- * @returns {Promise<Object>} A promise that resolves to an object with the Genesys Cloud Platform API specification, or rejects to an error if the operation fails.
+ * @returns {Promise<object>} A promise that resolves to an object with the Genesys Cloud Platform API specification, or rejects to an error if the operation fails.
  * @throws {ERROR_GC_REGION_TYPE_INVALID} If the gcRegion argument is not a string.
  * @throws {ERROR_TIMEOUT_TYPE_INVALID} If the timeout argument is not a number or not an integer.
  * @throws {ERROR_TIMEOUT_OUT_OF_BOUNDS} If the timeout argument is less than 1 milliseconds.

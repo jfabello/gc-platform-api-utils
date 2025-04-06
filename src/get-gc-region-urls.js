@@ -1,6 +1,6 @@
 /**
+ *  Get the Genesys Cloud region URLs function.
  * @module get-gc-region-urls
- * @description Get the Genesys Cloud region URLs function.
  * @license MIT
  * @author Juan F. Abello <juan@jfabello.com>
  */
@@ -39,7 +39,7 @@ Object.freeze(GC_REGIONS_DOMAIN_NAMES);
 const errors = require("./common-errors.js");
 
 /**
- * @typedef {Object} GCRegionURLs
+ * @typedef {object} GCRegionURLs
  * @property {URL} api The API server URL
  * @property {URL} apps The Apps URL
  * @property {URL} login The Auth server URL
