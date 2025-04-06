@@ -10,7 +10,7 @@
 
 // Module imports
 const { HTTPClient } = require("@jfabello/http-client");
-const getGCRegionURLs = require("./get-gc-region-urls.js");
+const { getGCRegionURLs } = require("./get-gc-region-urls.js");
 
 // Defaults
 const defaults = require("./common-defaults.js");
@@ -65,19 +65,14 @@ async function loadGCPlatformAPISpecFromCloud(gcRegion, { timeout = defaults.DEF
 		try {
 			httpRequest = new HTTPClient(gcPlatformAPISpecURL, { timeout: timeout, autoJSONResponseParse: true });
 			httpResponse = await httpRequest.makeRequest();
-		} catch (error) {
-			const httpClientError = new errors.ERROR_HTTP_CLIENT_ERROR();
-			httpClientError.extendedError = error;
-			httpClientError.extendedMessage = error.message;
-			throw httpClientError;
+		} catch (error) { /* istanbul ignore next: It is not possible to generate an HTTP client error under normal operation */
+			throw new errors.ERROR_HTTP_CLIENT_ERROR(error.message, error);
 		}
 
 		// Retry the HTTP request if the response status code is 301 (Moved Permanently)
 		if (httpResponse.statusCode === 301) {
-			if ("location" in httpResponse.headers === false) {
-				const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
-				error.extendedMessage = "No location specified in the HTTP response headers.";
-				throw error;
+			if ("location" in httpResponse.headers === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR("No location specified in the HTTP response headers.");
 			}
 
 			gcPlatformAPISpecURL = new URL(httpResponse.headers.location);
@@ -86,50 +81,42 @@ async function loadGCPlatformAPISpecFromCloud(gcRegion, { timeout = defaults.DEF
 
 		// Return the Genesys Cloud Platform API specification if the HTTP response status code is 200
 		if (httpResponse.statusCode === 200) {
-			if ("content-type" in httpResponse.headers === false) {
-				const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
-				error.extendedMessage = "No content type specified in the HTTP response headers.";
-				throw error;
+			if ("content-type" in httpResponse.headers === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR("No content type specified in the HTTP response headers.");
 			}
 
-			if (httpResponse.headers["content-type"].trim().toLowerCase().includes("application/json") === false) {
-				const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
-				error.extendedMessage = 'Invalid HTTP response content type, expected "application/json".';
-				throw error;
+			if (httpResponse.headers["content-type"].trim().toLowerCase().includes("application/json") === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR('Invalid HTTP response content type, expected "application/json".');
 			}
 
-			if ("body" in httpResponse === false) {
-				const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
-				error.extendedMessage = "The HTTP response does not have a body.";
-				throw error;
+			if ("body" in httpResponse === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR("The HTTP response does not have a body.");
 			}
 
 			// Verify that the HTTP response body has all the base properties of a Swagger file
-			if ("paths" in httpResponse.body === false) {
-				const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
-				error.extendedMessage = 'The Genesys Cloud Platform API specification is missing the "paths" property.';
-				throw error;
+			if ("paths" in httpResponse.body === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR('The Genesys Cloud Platform API specification is missing the "paths" property.');
 			}
 
-			if ("definitions" in httpResponse.body === false) {
-				const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
-				error.extendedMessage = 'The Genesys Cloud Platform API specification is missing the "definitions" property.';
-				throw error;
+			if ("definitions" in httpResponse.body === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR('The Genesys Cloud Platform API specification is missing the "definitions" property.');
 			}
 
 			return httpResponse.body;
 		}
 
 		// Throw an error if the HTTP response status code is not expected
-		const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
-		error.extendedMessage = `Unexpected HTTP response status code ${httpResponse.statusCode} (${httpResponse.statusMessage}).`;
-		throw error;
+		/* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+		throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR(`Unexpected HTTP response status code ${httpResponse.statusCode} (${httpResponse.statusMessage}).`);
 	}
 
 	// Throw an error if the HTTP request was redirected too many times
-	const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
-	error.extendedMessage = "Too many HTTP response redirections.";
-	throw error;
+	/* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+	{
+		const error = new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR();
+		error.extendedMessage = "Too many HTTP response redirections.";
+		throw error;
+	}
 }
 
-module.exports = loadGCPlatformAPISpecFromCloud;
+module.exports = { loadGCPlatformAPISpecFromCloud };

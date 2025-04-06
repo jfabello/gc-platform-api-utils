@@ -110,6 +110,7 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 	 */
 	function parseGCPlatformApiDefinition(gcPlatformApiDefinition) {
 		// Check the passed Genesys Cloud platform API definition argument
+		/* istanbul ignore next: It is too difficult pass a Genesys Cloud platform API specification with a definition that is not an object */
 		if (typeof gcPlatformApiDefinition !== "object") {
 			throw new errors.ERROR_GC_PLATFORM_API_DEFINITION_TYPE_INVALID();
 		}
@@ -145,6 +146,7 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 				// Process the "format" property if it exists, this overrides the "type" property as the BSON type
 				if ("format" in gcPlatformApiDefinition) {
 					// Check if the Genesys Cloud definition format is valid
+					/* istanbul ignore next: It is too difficult pass a Genesys Cloud platform API specification with a definition with an invalid "format" property */
 					if (gcPlatformApiDefinition.format in constants.gcPlatformAPIDataFormatsToBSONTypeMap === false) {
 						throw new errors.ERROR_GC_PLATFORM_API_DEFINITION_FORMAT_PROPERTY_VALUE_INVALID(gcPlatformApiDefinition.format);
 					}
@@ -152,6 +154,7 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 					parsedGCPlatformApiDefinition.bsonType = constants.gcPlatformAPIDataFormatsToBSONTypeMap[gcPlatformApiDefinition.format];
 				} else {
 					// Check if the Genesys Cloud Platform API definition type is valid
+					/* istanbul ignore next: It is too difficult pass a Genesys Cloud platform API specification with a definition with an invalid "type" property */
 					if (gcPlatformApiDefinition.type in constants.gcPlatformAPIDataTypesToBSONTypeMap === false) {
 						throw new errors.ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID(gcPlatformApiDefinition.type);
 					}
@@ -189,6 +192,7 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 					continue;
 				}
 
+				/* istanbul ignore next: It is too difficult pass a Genesys Cloud platform API specification with a definition with an invalid "additionalProperties" property */
 				throw new errors.ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID();
 			}
 
@@ -200,6 +204,7 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 
 			if (gcPlatformApiDefinitionKey === "$ref") {
 				// Check if the Genesys Cloud Platform API definition URI is valid
+				/* istanbul ignore next: It is too difficult pass a Genesys Cloud platform API specification with an invalid definition reference URI */
 				if (regexes.DEFINITION_URI.test(gcPlatformApiDefinition["$ref"]) === false) {
 					throw new errors.ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID(gcPlatformApiDefinition["$ref"]);
 				}
@@ -208,6 +213,7 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 				const matchedGCPlatformApiDefinitionName = gcPlatformApiDefinition["$ref"].match(regexes.DEFINITION_URI)[1];
 
 				// Check if the matched Genesys Cloud platform API definition exists in the Genesys Cloud platform API specification object
+				/* istanbul ignore next: It is too difficult pass a Genesys Cloud platform API specification with a missing definition */
 				if (matchedGCPlatformApiDefinitionName in gcPlatformAPISpec.definitions === false) {
 					throw new errors.ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC(matchedGCPlatformApiDefinitionName);
 				}
@@ -221,6 +227,7 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 				continue;
 			}
 
+			/* istanbul ignore next: It is too difficult pass a Genesys Cloud platform API specification with an invalid definition */
 			throw new errors.ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID(gcPlatformApiDefinitionKey);
 		}
 
@@ -230,4 +237,4 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 	}
 }
 
-module.exports = generateMongoDBJSONSchema;
+module.exports = { generateMongoDBJSONSchema };

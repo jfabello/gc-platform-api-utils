@@ -6,9 +6,9 @@
  */
 
 // Module imports
-const generateMongoDBJSONSchema = require("./generate-mongodb-json-schema.js");
-const getGCRegionURLs = require("./get-gc-region-urls.js");
-const loadGCPlatformAPISpecFromCloud = require("./load-gc-platform-api-spec-from-cloud.js");
+const { generateMongoDBJSONSchema } = require("./generate-mongodb-json-schema.js");
+const { getGCRegionURLs } = require("./get-gc-region-urls.js");
+const { loadGCPlatformAPISpecFromCloud } = require("./load-gc-platform-api-spec-from-cloud.js");
 
 // Errors
 

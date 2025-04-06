@@ -74,4 +74,4 @@ function getGCRegionURLs(gcRegion) {
 	};
 }
 
-module.exports = getGCRegionURLs;
+module.exports = { getGCRegionURLs };

@@ -72,10 +72,12 @@ class ERROR_TIMEOUT_OUT_OF_BOUNDS extends RangeError {
 class ERROR_GENESYS_CLOUD_SERVICES_ERROR extends Error {
 	/**
 	 * @constructor
+	 * @param {string} [extendedMessage] - The extended error message.
 	 */
-	constructor() {
+	constructor(extendedMessage) {
 		super("An error ocurrred on the Genesys Cloud services side.");
 		this.name = Object.getPrototypeOf(this).constructor.name;
+		if (typeof extendedMessage === "string") this.extendedMessage = extendedMessage;
 	}
 }
 
@@ -86,10 +88,14 @@ class ERROR_GENESYS_CLOUD_SERVICES_ERROR extends Error {
 class ERROR_HTTP_CLIENT_ERROR extends Error {
 	/**
 	 * @constructor
+	 * @param {string} [extendedMessage] - The extended error message.
+	 * @param {Error} [extendedError] - The extended error object.
 	 */
-	constructor() {
+	constructor(extendedMessage, extendedError) {
 		super("An error ocurrred on the HTTP client side.");
 		this.name = Object.getPrototypeOf(this).constructor.name;
+		if (typeof extendedMessage === "string") this.extendedMessage = extendedMessage;
+		if (typeof extendedError === "object" && extendedError instanceof Error) this.extendedError = extendedError;
 	}
 }
 

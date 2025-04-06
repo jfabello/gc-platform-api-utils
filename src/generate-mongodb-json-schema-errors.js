@@ -71,10 +71,10 @@ class ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING extends ReferenceE
 class ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC extends ReferenceError {
 	/**
 	 * @constructor
-	 * @param {string} definition - The definition name
+	 * @param {string} gcPlatformAPIDefinition - The Genesys Cloud Platform API definition name
 	 */
-	constructor(definition) {
-		super(`The definition "${definition}" was not found in the Genesys Cloud Platform API specification object.`);
+	constructor(gcPlatformAPIDefinition) {
+		super(`The definition "${gcPlatformAPIDefinition}" was not found in the Genesys Cloud Platform API specification object.`);
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }
@@ -86,10 +86,10 @@ class ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC extends ReferenceError 
 class ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID extends ReferenceError {
 	/**
 	 * @constructor
-	 * @param {string} definitionURI - The definition URI
+	 * @param {string} gcPlatformAPIDefinitionURI - The Genesys Cloud Platform API definition URI
 	 */
-	constructor(definitionURI) {
-		super(`The URI "${definitionURI}" is not a valid Genesys Cloud platform API definition URI.`);
+	constructor(gcPlatformAPIDefinitionURI) {
+		super(`The URI "${gcPlatformAPIDefinitionURI}" is not a valid Genesys Cloud platform API definition URI.`);
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }
@@ -101,10 +101,10 @@ class ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID extends ReferenceError {
 class ERROR_GC_PLATFORM_API_DEFINITION_FORMAT_PROPERTY_VALUE_INVALID extends RangeError {
 	/**
 	 * @constructor
-	 * @param {string} formatValue - The format property value
+	 * @param {string} gcPlatformAPIDefinitionFormatPropertyValue - The Genesys Cloud platform API definition "format" property value
 	 */
-	constructor(formatValue) {
-		super(`The Genesys Cloud platform API definition "format" property value "${formatValue}" is not valid.`);
+	constructor(gcPlatformAPIDefinitionFormatPropertyValue) {
+		super(`The Genesys Cloud platform API definition "format" property value "${gcPlatformAPIDefinitionFormatPropertyValue}" is not valid.`);
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }
@@ -116,10 +116,10 @@ class ERROR_GC_PLATFORM_API_DEFINITION_FORMAT_PROPERTY_VALUE_INVALID extends Ran
 class ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID extends RangeError {
 	/**
 	 * @constructor
-	 * @param {string} typeValue - The type property value
+	 * @param {string} gcPlatformAPIDefinitionTypePropertyValue - The Genesys Cloud platform API definition "type" property value
 	 */
-	constructor(typeValue) {
-		super(`The Genesys Cloud platform API definition "type" property value "${typeValue}" is not valid.`);
+	constructor(gcPlatformAPIDefinitionTypePropertyValue) {
+		super(`The Genesys Cloud platform API definition "type" property value "${gcPlatformAPIDefinitionTypePropertyValue}" is not valid.`);
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }
@@ -131,10 +131,10 @@ class ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID extends Range
 class ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID extends RangeError {
 	/**
 	 * @constructor
-	 * @param {string} property - The property name
+	 * @param {string} gcPlatformAPIDefinitionProperty - The property name
 	 */
-	constructor(property) {
-		super(`The Genesys Cloud platform API definition property "${property}" is not valid.`);
+	constructor(gcPlatformAPIDefinitionProperty) {
+		super(`The Genesys Cloud platform API definition property "${gcPlatformAPIDefinitionProperty}" is not valid.`);
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }
