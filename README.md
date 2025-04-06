@@ -17,6 +17,7 @@ The `gc-platform-api-utils` package provides utility functions to work with the 
 - [`getGCRegionURLs()` function](#getgcregionurls-function)
 - [`loadGCPlatformAPISpecFromCloud()` function](#loadgcplatformapispecfromcloud-function)
 - [`GC_PLATFORM_API_UTILS_ERRORS` object](#gcplatformapierrors-object)
+- [`GC_REGIONS` object](#gcregions-object)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
@@ -168,6 +169,29 @@ This object contains all the errors tha can be thrown by the Genesys Cloud Platf
 | `ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID` | The Genesys Cloud platform API definition "type" property value "${typeValue}" is not valid. | `RangeError`     |
 | `ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID`          | The Genesys Cloud platform API definition property "${property}" is not valid. | `RangeError`     |
 | `ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID` | The Genesys Cloud Platform API definition "additionalProperties" property value type is not valid, it should be an object or a boolean. | `TypeError`      |
+
+## `GC_REGIONS` object
+
+This object contains all the Genesys Cloud regions as an array of strings.
+
+| Region           | Location                  |
+|------------------|---------------------------|
+| `us-east-1`      | US East (N. Virginia)     |
+| `us-east-2`      | US East (Ohio)            |
+| `us-west-2`      | US West (Oregon)          |
+| `ca-central-1`   | Canada (Central)          |
+| `eu-west-1`      | EU (Ireland)              |
+| `eu-west-2`      | EU (London)               |
+| `eu-central-1`   | EU (Frankfurt)            |
+| `eu-central-2`   | EU (Zurich)               |
+| `ap-south-1`     | Asia Pacific (Mumbai)     |
+| `ap-northeast-1` | Asia Pacific (Tokyo)      |
+| `ap-northeast-2` | Asia Pacific (Seoul)      |
+| `ap-northeast-3` | Asia Pacific (Osaka)      |
+| `ap-southeast-2` | Asia Pacific (Sydney)     |
+| `sa-east-1`      | South America (São Paulo) |
+| `me-central-1`   | Middle East (Central)     |
+
 
 ## Testing
 

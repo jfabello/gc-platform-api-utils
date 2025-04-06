@@ -7,7 +7,7 @@
 
 // Module imports
 const { generateMongoDBJSONSchema } = require("./generate-mongodb-json-schema.js");
-const { getGCRegionURLs } = require("./get-gc-region-urls.js");
+const { getGCRegionURLs, GC_REGIONS } = require("./get-gc-region-urls.js");
 const { loadGCPlatformAPISpecFromCloud } = require("./load-gc-platform-api-spec-from-cloud.js");
 
 // Errors
@@ -22,5 +22,6 @@ module.exports = {
 	generateMongoDBJSONSchema,
 	getGCRegionURLs,
 	loadGCPlatformAPISpecFromCloud,
-	GC_PLATFORM_API_UTILS_ERRORS
+	GC_PLATFORM_API_UTILS_ERRORS,
+	GC_REGIONS
 };
