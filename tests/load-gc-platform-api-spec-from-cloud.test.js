@@ -14,7 +14,7 @@ const { loadGCPlatformAPISpecFromCloud } = require("../src/gc-platform-api-utils
 
 // Constants
 const GC_REGION = "us-east-1";
-const TIMEOUT = 60 * 1000; // 60 seconds
+const TEST_TIMEOUT = 60 * 1000; // 60 seconds
 
 // Errors
 const errors = require("../src/common-errors.js");
@@ -112,7 +112,7 @@ describe("Load the Genesys Cloud Platform API specification from the cloud funct
 				throw error; // This should not happen
 			}
 		},
-		TIMEOUT
+		TEST_TIMEOUT
 	);
 
 	test(
@@ -126,6 +126,6 @@ describe("Load the Genesys Cloud Platform API specification from the cloud funct
 				throw error; // This should not happen
 			}
 		},
-		TIMEOUT
+		TEST_TIMEOUT
 	);
 });

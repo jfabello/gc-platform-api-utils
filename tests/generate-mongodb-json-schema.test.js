@@ -11,7 +11,7 @@
 // Module imports
 const fs = require("node:fs");
 const path = require("node:path");
-const { describe, expect, test } = require("@jest/globals");
+const { describe, expect, test, beforeAll } = require("@jest/globals");
 const ConsoleLogger = require("@jfabello/log-to-console");
 const { generateMongoDBJSONSchema, loadGCPlatformAPISpecFromCloud } = require("../src/gc-platform-api-utils.js");
 
@@ -22,7 +22,7 @@ const GC_PLATFORM_API_SPEC_FILE_NAME = "publicapi-v2-latest.json";
 // Errors
 const errors = require("../src/generate-mongodb-json-schema-errors.js");
 
-const TIMEOUT = 60 * 1000; // 60 seconds
+const TEST_TIMEOUT = 60 * 1000; // 60 seconds
 
 // Variables
 let gcPlatformAPISpec = null;
@@ -42,7 +42,7 @@ beforeAll(async () => {
 		gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud(GC_REGION);
 	}
 	logToConsole.info("Successfully loaded the Genesys Cloud Platform API specification.");
-}, TIMEOUT);
+}, TEST_TIMEOUT);
 
 describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API definition function tests", () => {
 	test("An attempt to call the generateMongoDBJSONSchema() function without arguments should throw an ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID error", () => {
@@ -143,6 +143,6 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 					// This should not happen
 				}
 		},
-		TIMEOUT
+		TEST_TIMEOUT
 	);
 });
