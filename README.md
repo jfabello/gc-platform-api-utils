@@ -16,7 +16,7 @@ The `gc-platform-api-utils` package provides utility functions to work with the 
 - [`generateMongoDBJSONSchema()` function](#generatemongodbjsonschema-function)
 - [`getGCRegionURLs()` function](#getgcregionurls-function)
 - [`loadGCPlatformAPISpecFromCloud()` function](#loadgcplatformapispecfromcloud-function)
-- [`gcPlatformAPIErrors` object](#gcplatformapierrors-object)
+- [`GC_PLATFORM_API_UTILS_ERRORS` object](#gcplatformapierrors-object)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
@@ -88,7 +88,7 @@ Generates a MongoDB JSON schema from a Genesys Cloud Platform API definition.
 
 ### Returns
 
-The MongoDB JSON schema object.
+A MongoDB JSON schema object.
 
 ### Throws
 
@@ -113,7 +113,7 @@ Gets the Genesys Cloud URLs (API, apps, and login) for the specified Genesys Clo
 
 ### Returns
 
-The Genesys Cloud region URLs object with the following properties:
+A Genesys Cloud region URLs object with the following properties:
 
 - `api`: The API server URL
 - `apps`: The Apps URL
@@ -146,7 +146,7 @@ A promise that resolves to an object with the Genesys Cloud Platform API specifi
 - `ERROR_HTTP_CLIENT_ERROR`: If there is an error with the HTTP client.
 - `ERROR_GENESYS_CLOUD_SERVICES_ERROR`: If there is an error with the Genesys Cloud services.
 
-## `gcPlatformAPIErrors` object
+## `GC_PLATFORM_API_UTILS_ERRORS` object
 
 This object contains all the errors tha can be thrown by the Genesys Cloud Platform API utilities functions.
 

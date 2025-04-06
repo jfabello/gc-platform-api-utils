@@ -14,13 +14,13 @@ const { loadGCPlatformAPISpecFromCloud } = require("./load-gc-platform-api-spec-
 
 const commonErrors = require("./common-errors.js");
 const generateMongoDBJSONSchemaErrors = require("./generate-mongodb-json-schema-errors.js");
-const gcPlatformAPIUtilsErrors = Object.assign({}, commonErrors, generateMongoDBJSONSchemaErrors);
-Object.freeze(gcPlatformAPIUtilsErrors);
+const GC_PLATFORM_API_UTILS_ERRORS = Object.assign({}, commonErrors, generateMongoDBJSONSchemaErrors);
+Object.freeze(GC_PLATFORM_API_UTILS_ERRORS);
 
 
 module.exports = {
 	generateMongoDBJSONSchema,
 	getGCRegionURLs,
 	loadGCPlatformAPISpecFromCloud,
-	gcPlatformAPIUtilsErrors
+	GC_PLATFORM_API_UTILS_ERRORS
 };
