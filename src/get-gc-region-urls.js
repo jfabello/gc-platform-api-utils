@@ -61,7 +61,7 @@ function getGCRegionURLs(gcRegion) {
 	gcRegion = gcRegion.trim().toLowerCase();
 
 	if (gcRegion in GC_REGIONS_DOMAIN_NAMES === false) {
-		throw new errors.ERROR_GC_REGION_INVALID();
+		throw new errors.ERROR_GC_REGION_INVALID(gcRegion);
 	}
 
 	const gcDomain = GC_REGIONS_DOMAIN_NAMES[gcRegion];
