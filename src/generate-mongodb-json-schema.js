@@ -194,7 +194,7 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 			if (gcPlatformApiDefinitionKey === "$ref") {
 				// Check if the Genesys Cloud Platform API definition URI is valid
 				if (regexes.DEFINITION_URI.test(gcPlatformApiDefinition["$ref"]) === false) {
-					throw errors.ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID(gcPlatformApiDefinition["$ref"]);
+					throw new errors.ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID(gcPlatformApiDefinition["$ref"]);
 				}
 
 				// Get the Genesys Cloud Platform API definition name from the URI
