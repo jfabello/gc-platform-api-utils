@@ -20,7 +20,7 @@
 		"test": "jest --watchAll --coverage"
 	},
 	"dependencies": {
-		"@jfabello/http-client": "^1.0.0"
+		"@jfabello/http-client": "^1.2.0"
 	},
 	"devDependencies": {
 		"@jest/globals": "^29.0.0",
