@@ -10,7 +10,8 @@
 
 /**
  * Thrown when the Genesys Cloud region is not valid
- * @class
+ * @class ERROR_GC_REGION_TYPE_INVALID
+ * @extends TypeError
  */
 class ERROR_GC_REGION_TYPE_INVALID extends TypeError {
 	/**
@@ -24,7 +25,8 @@ class ERROR_GC_REGION_TYPE_INVALID extends TypeError {
 
 /**
  * Thrown when the Genesys Cloud region is not valid
- * @class
+ * @class ERROR_GC_REGION_INVALID
+ * @extends TypeError
  */
 class ERROR_GC_REGION_INVALID extends TypeError {
 	/**
@@ -39,7 +41,8 @@ class ERROR_GC_REGION_INVALID extends TypeError {
 
 /**
  * Thrown when the timeout type is not valid
- * @class
+ * @class ERROR_TIMEOUT_TYPE_INVALID
+ * @extends TypeError
  */
 class ERROR_TIMEOUT_TYPE_INVALID extends TypeError {
 	/**
@@ -53,7 +56,8 @@ class ERROR_TIMEOUT_TYPE_INVALID extends TypeError {
 
 /**
  * Thrown when the timeout value is out of bounds
- * @class
+ * @class ERROR_TIMEOUT_OUT_OF_BOUNDS
+ * @extends RangeError
  */
 class ERROR_TIMEOUT_OUT_OF_BOUNDS extends RangeError {
 	/**
@@ -67,7 +71,8 @@ class ERROR_TIMEOUT_OUT_OF_BOUNDS extends RangeError {
 
 /**
  * Thrown when an error occurs on the Genesys Cloud services side
- * @class
+ * @class ERROR_GENESYS_CLOUD_SERVICES_ERROR
+ * @extends Error
  */
 class ERROR_GENESYS_CLOUD_SERVICES_ERROR extends Error {
 	/**
@@ -83,7 +88,8 @@ class ERROR_GENESYS_CLOUD_SERVICES_ERROR extends Error {
 
 /**
  * Thrown when an error occurs on the HTTP client side
- * @class
+ * @class ERROR_HTTP_CLIENT_ERROR
+ * @extends Error
  */
 class ERROR_HTTP_CLIENT_ERROR extends Error {
 	/**

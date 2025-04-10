@@ -10,7 +10,8 @@
 
 /**
  * Thrown when the Genesys Cloud platform API specification type not valid
- * @class
+ * @class ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID
+ * @extends TypeError
  */
 class ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID extends TypeError {
 	/**
@@ -24,7 +25,8 @@ class ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID extends TypeError {
 
 /**
  * Thrown when the Genesys Cloud platform API definition type is not valid
- * @class
+ * @class ERROR_GC_PLATFORM_API_DEFINITION_TYPE_INVALID
+ * @extends TypeError
  */
 class ERROR_GC_PLATFORM_API_DEFINITION_TYPE_INVALID extends TypeError {
 	/**
@@ -38,7 +40,8 @@ class ERROR_GC_PLATFORM_API_DEFINITION_TYPE_INVALID extends TypeError {
 
 /**
  * Thrown when the Genesys Cloud platform API definition name type is not valid
- * @class
+ * @class ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID
+ * @extends TypeError
  */
 class ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID extends TypeError {
 	/**
@@ -52,7 +55,8 @@ class ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID extends TypeError {
 
 /**
  * Thrown when the Genesys Cloud platform API specification object is missing the "definitions" property
- * @class
+ * @class ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING
+ * @extends ReferenceError
  */
 class ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING extends ReferenceError {
 	/**
@@ -66,7 +70,8 @@ class ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING extends ReferenceE
 
 /**
  * Thrown when the Genesys Cloud platform API definition is not found in the specification object
- * @class
+ * @class ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC
+ * @extends ReferenceError
  */
 class ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC extends ReferenceError {
 	/**
@@ -81,7 +86,8 @@ class ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC extends ReferenceError 
 
 /**
  * Thrown when the Genesys Cloud platform API definition URI is not valid
- * @class
+ * @class ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID
+ * @extends ReferenceError
  */
 class ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID extends ReferenceError {
 	/**
@@ -96,7 +102,8 @@ class ERROR_GC_PLATFORM_API_DEFINITION_URI_INVALID extends ReferenceError {
 
 /**
  * Thrown when the Genesys Cloud platform API definition "format" property value is not valid
- * @class
+ * @class ERROR_GC_PLATFORM_API_DEFINITION_FORMAT_PROPERTY_VALUE_INVALID
+ * @extends RangeError
  */
 class ERROR_GC_PLATFORM_API_DEFINITION_FORMAT_PROPERTY_VALUE_INVALID extends RangeError {
 	/**
@@ -111,7 +118,8 @@ class ERROR_GC_PLATFORM_API_DEFINITION_FORMAT_PROPERTY_VALUE_INVALID extends Ran
 
 /**
  * Thrown when the Genesys Cloud platform API definition "type" property value is not valid
- * @class
+ * @class ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID
+ * @extends RangeError
  */
 class ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID extends RangeError {
 	/**
@@ -126,7 +134,8 @@ class ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID extends Range
 
 /**
  * Thrown when the Genesys Cloud platform API definition property is not valid
- * @class
+ * @class ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID
+ * @extends RangeError
  */
 class ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID extends RangeError {
 	/**
@@ -141,7 +150,8 @@ class ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID extends RangeError {
 
 /**
  * Thrown when the Genesys Cloud Platform API definition "additionalProperties" property value type is not valid
- * @class
+ * @class ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID
+ * @extends TypeError
  */
 class ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID extends TypeError {
 	/**
