@@ -19,7 +19,7 @@ const GC_REGION = "us-east-1";
 const errors = require("../src/common-errors.js");
 
 describe("Get the Genesys Cloud region URLs function tests", () => {
-	test("An attempt to call the getGCRegionURLs() function without arguments should throw an ERROR_GC_REGION_TYPE_INVALID error", () => {
+	test("An attempt to call the getGCRegionURLs() function without arguments must throw an ERROR_GC_REGION_TYPE_INVALID error", () => {
 		expect.assertions(1);
 		try {
 			const gcRegionURLs = getGCRegionURLs();
@@ -52,7 +52,7 @@ describe("Get the Genesys Cloud region URLs function tests", () => {
 		}
 	});
 
-	test("An attempt to call the getGCRegionURLs() function with an invalid Genesys Cloud region should throw an ERROR_GC_REGION_INVALID error", () => {
+	test("An attempt to call the getGCRegionURLs() function with an invalid Genesys Cloud region must throw an ERROR_GC_REGION_INVALID error", () => {
 		expect.assertions(1);
 		try {
 			const gcRegionURLs = getGCRegionURLs("not-a-region");
@@ -61,7 +61,7 @@ describe("Get the Genesys Cloud region URLs function tests", () => {
 		}
 	});
 
-	test("An attempt to call the getGCRegionURLs() function with a valid Genesys Cloud region should return the Genesys Cloud region URLs", () => {
+	test("An attempt to call the getGCRegionURLs() function with a valid Genesys Cloud region must return the Genesys Cloud region URLs", () => {
 		expect.assertions(7);
 		const gcRegionURLs = getGCRegionURLs(GC_REGION);
 		expect(typeof gcRegionURLs).toBe("object");

@@ -45,7 +45,7 @@ beforeAll(async () => {
 }, TEST_TIMEOUT);
 
 describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API definition function tests", () => {
-	test("An attempt to call the generateMongoDBJSONSchema() function without arguments should throw an ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID error", () => {
+	test("An attempt to call the generateMongoDBJSONSchema() function without arguments must throw an ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID error", () => {
 		expect.assertions(1);
 		try {
 			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema();
@@ -54,7 +54,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 		}
 	});
 
-	test("An attempt to call the generateMongoDBJSONSchema() function with an invalid Genesys Cloud Platform API specification argument type should throw an ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID error", () => {
+	test("An attempt to call the generateMongoDBJSONSchema() function with an invalid Genesys Cloud Platform API specification argument type must throw an ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID error", () => {
 		expect.assertions(4);
 		try {
 			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(1234);
@@ -78,7 +78,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 		}
 	});
 
-	test('An attempt to call the generateMongoDBJSONSchema() function with a Genesys Cloud Platform API specification that is missing the "definitions"  property should throw an ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING error', () => {
+	test('An attempt to call the generateMongoDBJSONSchema() function with a Genesys Cloud Platform API specification that is missing the "definitions"  property must throw an ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING error', () => {
 		expect.assertions(1);
 		try {
 			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema({}, "Queue");
@@ -87,7 +87,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 		}
 	});
 
-	test("An attempt to call the generateMongoDBJSONSchema() function with an invalid Genesys Cloud Platform API definition name argument type should throw an ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID error", () => {
+	test("An attempt to call the generateMongoDBJSONSchema() function with an invalid Genesys Cloud Platform API definition name argument type must throw an ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID error", () => {
 		expect.assertions(4);
 		try {
 			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, 1234);
@@ -111,7 +111,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 		}
 	});
 
-	test("An attempt to call the generateMongoDBJSONSchema() function with an unknown Genesys Cloud Platform API definition name argument should throw an ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC error", () => {
+	test("An attempt to call the generateMongoDBJSONSchema() function with an unknown Genesys Cloud Platform API definition name argument must throw an ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC error", () => {
 		expect.assertions(1);
 		try {
 			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, "NoDefinition");
@@ -120,7 +120,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 		}
 	});
 
-	test("An attempt to call the generateMongoDBJSONSchema() function with valid arguments should return an object", () => {
+	test("An attempt to call the generateMongoDBJSONSchema() function with valid arguments must return an object", () => {
 		expect.assertions(1);
 		try {
 			let gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, "Queue");
@@ -131,7 +131,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 	});
 
 	test(
-		"The generateMongoDBJSONSchema() function should be able to generate JSON schemas for all the definitions in the Genesys Cloud platform API specification",
+		"The generateMongoDBJSONSchema() function must be able to generate JSON schemas for all the definitions in the Genesys Cloud platform API specification",
 		() => {
 			expect.assertions(gcPlatformAPISpec.definitions.length);
 

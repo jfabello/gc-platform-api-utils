@@ -20,7 +20,7 @@ const TEST_TIMEOUT = 60 * 1000; // 60 seconds
 const errors = require("../src/common-errors.js");
 
 describe("Load the Genesys Cloud Platform API specification from the cloud function tests", () => {
-	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function without an argument should throw an ERROR_GC_REGION_TYPE_INVALID error", async () => {
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function without an argument must throw an ERROR_GC_REGION_TYPE_INVALID error", async () => {
 		expect.assertions(1);
 		try {
 			const gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud();
@@ -29,7 +29,7 @@ describe("Load the Genesys Cloud Platform API specification from the cloud funct
 		}
 	});
 
-	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid Genesys Cloud region argument type should throw an ERROR_GC_REGION_TYPE_INVALID error", async () => {
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid Genesys Cloud region argument type must throw an ERROR_GC_REGION_TYPE_INVALID error", async () => {
 		expect.assertions(4);
 		try {
 			const gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud(1234);
@@ -53,7 +53,7 @@ describe("Load the Genesys Cloud Platform API specification from the cloud funct
 		}
 	});
 
-	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid timeout option argument type should throw an ERROR_TIMEOUT_TYPE_INVALID error", async () => {
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid timeout option argument type must throw an ERROR_TIMEOUT_TYPE_INVALID error", async () => {
 		expect.assertions(4);
 		try {
 			const gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud(GC_REGION, { timeout: "60000" });
@@ -77,7 +77,7 @@ describe("Load the Genesys Cloud Platform API specification from the cloud funct
 		}
 	});
 
-	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid timeout option argument should throw an ERROR_TIMEOUT_OUT_OF_BOUNDS error", async () => {
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid timeout option argument must throw an ERROR_TIMEOUT_OUT_OF_BOUNDS error", async () => {
 		expect.assertions(2);
 		try {
 			let gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud(GC_REGION, { timeout: -60 * 1000 });
@@ -92,7 +92,7 @@ describe("Load the Genesys Cloud Platform API specification from the cloud funct
 		}
 	});
 
-	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid Genesys Cloud region argument should throw an ERROR_GC_REGION_INVALID error", async () => {
+	test("An attempt to call the loadGCPlatformAPISpecFromCloud() function with an invalid Genesys Cloud region argument must throw an ERROR_GC_REGION_INVALID error", async () => {
 		expect.assertions(1);
 		try {
 			let gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud("not-a-region");
@@ -102,7 +102,7 @@ describe("Load the Genesys Cloud Platform API specification from the cloud funct
 	});
 
 	test(
-		"An attempt to call the loadGCPlatformAPISpecFromCloud() function with a valid Genesys Cloud region argument should return an object",
+		"An attempt to call the loadGCPlatformAPISpecFromCloud() function with a valid Genesys Cloud region argument must return an object",
 		async () => {
 			expect.assertions(1);
 			try {
@@ -116,7 +116,7 @@ describe("Load the Genesys Cloud Platform API specification from the cloud funct
 	);
 
 	test(
-		"An attempt to call the loadGCPlatformAPISpecFromCloud() function with valid Genesys Cloud region and timeout option arguments should return an object",
+		"An attempt to call the loadGCPlatformAPISpecFromCloud() function with valid Genesys Cloud region and timeout option arguments must return an object",
 		async () => {
 			expect.assertions(1);
 			try {
