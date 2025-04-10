@@ -147,7 +147,7 @@ A promise that resolves to an object with the Genesys Cloud Platform API specifi
 - `ERROR_HTTP_CLIENT_ERROR`: If there is an error with the HTTP client.
 - `ERROR_GENESYS_CLOUD_SERVICES_ERROR`: If there is an error with the Genesys Cloud services.
 
-## `GC_PLATFORM_API_UTILS_ERRORS` object
+## `errors` object
 
 This object contains all the errors tha can be thrown by the Genesys Cloud Platform API utilities functions.
 
@@ -170,7 +170,7 @@ This object contains all the errors tha can be thrown by the Genesys Cloud Platf
 | `ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID`          | The Genesys Cloud platform API definition property "${property}" is not valid. | `RangeError`     |
 | `ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID` | The Genesys Cloud Platform API definition "additionalProperties" property value type is not valid, it must be an object or a boolean. | `TypeError`      |
 
-## `GC_REGIONS` object
+## `gcRegions` object
 
 This object contains all the Genesys Cloud regions as an array of strings.
 

@@ -10,18 +10,18 @@
 
 // Module imports
 const { describe, expect, test } = require("@jest/globals");
-const { GC_PLATFORM_API_UTILS_ERRORS } = require("../src/gc-platform-api-utils.js");
+const { errors } = require("../src/gc-platform-api-utils.js");
 
 describe("Get the Genesys Cloud region URLs function tests", () => {
-	test("Check that GC_PLATFORM_API_UTILS_ERRORS is an object", () => {
+	test("Check that the Genesys Cloud Platform API utilities errors object is an object", () => {
 		expect.assertions(1);
-		expect(typeof GC_PLATFORM_API_UTILS_ERRORS).toBe("object");
+		expect(typeof errors).toBe("object");
 	});
 
-	test("Check that the properties of GC_PLATFORM_API_UTILS_ERRORS are functions", () => {
-		expect.assertions(Object.keys(GC_PLATFORM_API_UTILS_ERRORS).length);
-		for (const property in GC_PLATFORM_API_UTILS_ERRORS) {
-			expect(typeof GC_PLATFORM_API_UTILS_ERRORS[property]).toBe("function");
+	test("Check that the properties of the Genesys Cloud Platform API utilities errors object are functions", () => {
+		expect.assertions(Object.keys(errors).length);
+		for (const property in errors) {
+			expect(typeof errors[property]).toBe("function");
 		}
 	});
 });

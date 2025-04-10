@@ -7,21 +7,21 @@
 
 // Module imports
 const { generateMongoDBJSONSchema } = require("./generate-mongodb-json-schema.js");
-const { getGCRegionURLs, GC_REGIONS } = require("./get-gc-region-urls.js");
+const { getGCRegionURLs, gcRegions } = require("./get-gc-region-urls.js");
 const { loadGCPlatformAPISpecFromCloud } = require("./load-gc-platform-api-spec-from-cloud.js");
 
 // Errors
 
 const commonErrors = require("./common-errors.js");
 const generateMongoDBJSONSchemaErrors = require("./generate-mongodb-json-schema-errors.js");
-const GC_PLATFORM_API_UTILS_ERRORS = Object.assign({}, commonErrors, generateMongoDBJSONSchemaErrors);
-Object.freeze(GC_PLATFORM_API_UTILS_ERRORS);
+const errors = Object.assign({}, commonErrors, generateMongoDBJSONSchemaErrors);
+Object.freeze(errors);
 
 
 module.exports = {
 	generateMongoDBJSONSchema,
 	getGCRegionURLs,
 	loadGCPlatformAPISpecFromCloud,
-	GC_PLATFORM_API_UTILS_ERRORS,
-	GC_REGIONS
+	errors,
+	gcRegions
 };
