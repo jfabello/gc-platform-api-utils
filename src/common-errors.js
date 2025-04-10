@@ -18,7 +18,7 @@ class ERROR_GC_REGION_TYPE_INVALID extends TypeError {
 	 * @constructor
 	 */
 	constructor() {
-		super("The Genesys Cloud region type is not valid, it should be a string.");
+		super("The Genesys Cloud region type is not valid, it must be a string.");
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }
@@ -49,7 +49,7 @@ class ERROR_TIMEOUT_TYPE_INVALID extends TypeError {
 	 * @constructor
 	 */
 	constructor() {
-		super("The timeout type is not valid, it should be a positive integer.");
+		super("The timeout type is not valid, it must be a positive integer.");
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }
@@ -64,7 +64,7 @@ class ERROR_TIMEOUT_OUT_OF_BOUNDS extends RangeError {
 	 * @constructor
 	 */
 	constructor() {
-		super("The timeout type is not valid, it should be a positive integer.");
+		super("The timeout type is not valid, it must be a positive integer.");
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }

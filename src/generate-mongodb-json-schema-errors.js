@@ -158,7 +158,7 @@ class ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID extends Ty
 	 * @constructor
 	 */
 	constructor() {
-		super(`The Genesys Cloud Platform API defintion "additionalProperties" property value type is not valid, it should be an object or a boolean.`);
+		super(`The Genesys Cloud Platform API defintion "additionalProperties" property value type is not valid, it must be an object or a boolean.`);
 		this.name = Object.getPrototypeOf(this).constructor.name;
 	}
 }

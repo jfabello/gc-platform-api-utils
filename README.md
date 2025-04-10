@@ -153,10 +153,10 @@ This object contains all the errors tha can be thrown by the Genesys Cloud Platf
 
 | Class Name                                                   | Message                                                      | Parent Class     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------- |
-| `ERROR_GC_REGION_TYPE_INVALID`                               | The Genesys Cloud region type is not valid, it should be a string. | `TypeError`      |
+| `ERROR_GC_REGION_TYPE_INVALID`                               | The Genesys Cloud region type is not valid, it must be a string. | `TypeError`      |
 | `ERROR_GC_REGION_INVALID`                                    | The Genesys Cloud region ${gcRegion} is not valid.           | `TypeError`      |
-| `ERROR_TIMEOUT_TYPE_INVALID`                                 | The timeout type is not valid, it should be a positive integer. | `TypeError`      |
-| `ERROR_TIMEOUT_OUT_OF_BOUNDS`                                | The timeout type is not valid, it should be a positive integer. | `RangeError`     |
+| `ERROR_TIMEOUT_TYPE_INVALID`                                 | The timeout type is not valid, it must be a positive integer. | `TypeError`      |
+| `ERROR_TIMEOUT_OUT_OF_BOUNDS`                                | The timeout type is not valid, it must be a positive integer. | `RangeError`     |
 | `ERROR_GENESYS_CLOUD_SERVICES_ERROR`                         | An error occurred on the Genesys Cloud services side.        | `Error`          |
 | `ERROR_HTTP_CLIENT_ERROR`                                    | An error occurred on the HTTP client side.                   | `Error`          |
 | `ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID`                    | Invalid Genesys Cloud platform API specification type, it must be an object. | `TypeError`      |
@@ -168,7 +168,7 @@ This object contains all the errors tha can be thrown by the Genesys Cloud Platf
 | `ERROR_GC_PLATFORM_API_DEFINITION_FORMAT_PROPERTY_VALUE_INVALID` | The Genesys Cloud platform API definition "format" property value "${formatValue}" is not valid. | `RangeError`     |
 | `ERROR_GC_PLATFORM_API_DEFINITION_TYPE_PROPERTY_VALUE_INVALID` | The Genesys Cloud platform API definition "type" property value "${typeValue}" is not valid. | `RangeError`     |
 | `ERROR_GC_PLATFORM_API_DEFINITION_PROPERTY_INVALID`          | The Genesys Cloud platform API definition property "${property}" is not valid. | `RangeError`     |
-| `ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID` | The Genesys Cloud Platform API definition "additionalProperties" property value type is not valid, it should be an object or a boolean. | `TypeError`      |
+| `ERROR_GC_PLATFORM_API_DEFINITION_AP_PROPERTY_VALUE_TYPE_INVALID` | The Genesys Cloud Platform API definition "additionalProperties" property value type is not valid, it must be an object or a boolean. | `TypeError`      |
 
 ## `GC_REGIONS` object
 
