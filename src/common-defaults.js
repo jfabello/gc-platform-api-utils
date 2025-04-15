@@ -14,4 +14,4 @@ defaults.DEFAULT_HTTP_TIMEOUT = 60 * 1000; // 60 seconds
 
 Object.freeze(defaults);
 
-module.exports = defaults;
+export { defaults };

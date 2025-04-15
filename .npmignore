@@ -26,3 +26,6 @@ publicapi-v2-latest.json
 # Ignore the test files
 /tests/
 *.test.js
+
+# Ignore the ESLint configuration files
+eslint.config.js

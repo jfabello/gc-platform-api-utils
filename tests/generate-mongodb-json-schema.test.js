@@ -9,18 +9,21 @@
 "use strict";
 
 // Module imports
-const fs = require("node:fs");
-const path = require("node:path");
-const { describe, expect, test, beforeAll } = require("@jest/globals");
-const ConsoleLogger = require("@jfabello/log-to-console");
-const { generateMongoDBJSONSchema, loadGCPlatformAPISpecFromCloud } = require("../src/gc-platform-api-utils.js");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { describe, expect, test, beforeAll } from "@jest/globals";
+import { ConsoleLogger } from "@jfabello/log-to-console";
+import { generateMongoDBJSONSchema, loadGCPlatformAPISpecFromCloud } from "../src/gc-platform-api-utils.js";
 
 // Constants
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const GC_REGION = "us-east-1";
 const GC_PLATFORM_API_SPEC_FILE_NAME = "publicapi-v2-latest.json";
 
 // Errors
-const errors = require("../src/generate-mongodb-json-schema-errors.js");
+import { errors } from "../src/generate-mongodb-json-schema-errors.js";
 
 const TEST_TIMEOUT = 60 * 1000; // 60 seconds
 
@@ -48,7 +51,8 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 	test("An attempt to call the generateMongoDBJSONSchema() function without arguments must throw an ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID error", () => {
 		expect.assertions(1);
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema();
+			// @ts-expect-error
+			generateMongoDBJSONSchema();
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID);
 		}
@@ -57,22 +61,26 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 	test("An attempt to call the generateMongoDBJSONSchema() function with an invalid Genesys Cloud Platform API specification argument type must throw an ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID error", () => {
 		expect.assertions(4);
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(1234);
+			// @ts-expect-error
+			generateMongoDBJSONSchema(1234);
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID);
 		}
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(true);
+			// @ts-expect-error
+			generateMongoDBJSONSchema(true);
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID);
 		}
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema("Genesys Cloud");
+			// @ts-expect-error
+			generateMongoDBJSONSchema("Genesys Cloud");
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID);
 		}
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(() => {});
+			// @ts-expect-error
+			generateMongoDBJSONSchema(() => {});
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_SPEC_TYPE_INVALID);
 		}
@@ -81,7 +89,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 	test('An attempt to call the generateMongoDBJSONSchema() function with a Genesys Cloud Platform API specification that is missing the "definitions"  property must throw an ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING error', () => {
 		expect.assertions(1);
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema({}, "Queue");
+			generateMongoDBJSONSchema({}, "Queue");
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_SPEC_DEFINITIONS_PROPERTY_MISSING);
 		}
@@ -90,22 +98,26 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 	test("An attempt to call the generateMongoDBJSONSchema() function with an invalid Genesys Cloud Platform API definition name argument type must throw an ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID error", () => {
 		expect.assertions(4);
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, 1234);
+			// @ts-expect-error
+			generateMongoDBJSONSchema(gcPlatformAPISpec, 1234);
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID);
 		}
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, true);
+			// @ts-expect-error
+			generateMongoDBJSONSchema(gcPlatformAPISpec, true);
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID);
 		}
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, ["Queue"]);
+			// @ts-expect-error
+			generateMongoDBJSONSchema(gcPlatformAPISpec, ["Queue"]);
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID);
 		}
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, { definition: "Queue" });
+			// @ts-expect-error
+			generateMongoDBJSONSchema(gcPlatformAPISpec, { definition: "Queue" });
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_DEFINITION_NAME_TYPE_INVALID);
 		}
@@ -114,7 +126,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 	test("An attempt to call the generateMongoDBJSONSchema() function with an unknown Genesys Cloud Platform API definition name argument must throw an ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC error", () => {
 		expect.assertions(1);
 		try {
-			const gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, "NoDefinition");
+			generateMongoDBJSONSchema(gcPlatformAPISpec, "NoDefinition");
 		} catch (error) {
 			expect(error).toBeInstanceOf(errors.ERROR_GC_PLATFORM_API_DEFINITION_NOT_FOUND_IN_SPEC);
 		}
@@ -122,12 +134,8 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 
 	test("An attempt to call the generateMongoDBJSONSchema() function with valid arguments must return an object", () => {
 		expect.assertions(1);
-		try {
-			let gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, "Queue");
-			expect(typeof gcAPIDefinitionJSONSchema).toBe("object");
-		} catch (error) {
-			throw error; // This should not happen
-		}
+		let gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, "Queue");
+		expect(typeof gcAPIDefinitionJSONSchema).toBe("object");
 	});
 
 	test(
@@ -139,7 +147,7 @@ describe("Generate a MongoDB JSON schema from a Genesys Cloud Platform API defin
 				try {
 					let gcAPIDefinitionJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionName);
 					expect(typeof gcAPIDefinitionJSONSchema).toBe("object");
-				} catch (error) {
+				} catch {
 					// This should not happen
 				}
 		},

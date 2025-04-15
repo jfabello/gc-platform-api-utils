@@ -36,7 +36,7 @@ Object.freeze(GC_REGIONS);
 Object.freeze(GC_REGIONS_DOMAIN_NAMES);
 
 // Errors
-const errors = require("./common-errors.js");
+import { errors } from "./common-errors.js";
 
 /**
  * @typedef {object} GCRegionURLs
@@ -74,4 +74,4 @@ function getGCRegionURLs(gcRegion) {
 	};
 }
 
-module.exports = { getGCRegionURLs, gcRegions: GC_REGIONS };
+export { getGCRegionURLs, GC_REGIONS as gcRegions };

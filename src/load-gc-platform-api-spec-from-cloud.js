@@ -9,14 +9,14 @@
 "use strict";
 
 // Module imports
-const { HTTPClient } = require("@jfabello/http-client");
-const { getGCRegionURLs } = require("./get-gc-region-urls.js");
+import { HTTPClient } from "@jfabello/http-client";
+import { getGCRegionURLs } from "./get-gc-region-urls.js";
 
 // Defaults
-const defaults = require("./common-defaults.js");
+import { defaults } from "./common-defaults.js";
 
 // Errors
-const errors = require("./common-errors.js");
+import { errors } from "./common-errors.js";
 
 /**
  * @description Loads the Genesys Cloud Platform API specification from the Genesys Cloud servers.
@@ -46,13 +46,8 @@ async function loadGCPlatformAPISpecFromCloud(gcRegion, { timeout = defaults.DEF
 	}
 
 	// Get the Genesys Cloud region API URL
-	let gcRegionAPIURL = null;
-	try {
-		const gcRegionURLs = getGCRegionURLs(gcRegion);
-		gcRegionAPIURL = gcRegionURLs.api;
-	} catch (error) {
-		throw error;
-	}
+	const gcRegionURLs = getGCRegionURLs(gcRegion);
+	const gcRegionAPIURL = gcRegionURLs.api;
 
 	let gcPlatformAPISpecURL = new URL("/api/v2/docs/swagger", gcRegionAPIURL);
 
@@ -65,13 +60,15 @@ async function loadGCPlatformAPISpecFromCloud(gcRegion, { timeout = defaults.DEF
 		try {
 			httpRequest = new HTTPClient(gcPlatformAPISpecURL, { timeout: timeout, autoJSONResponseParse: true });
 			httpResponse = await httpRequest.makeRequest();
-		} catch (error) { /* istanbul ignore next: It is not possible to generate an HTTP client error under normal operation */
+		} catch (error) {
+			/* istanbul ignore next: It is not possible to generate an HTTP client error under normal operation */
 			throw new errors.ERROR_HTTP_CLIENT_ERROR(error.message, error);
 		}
 
 		// Retry the HTTP request if the response status code is 301 (Moved Permanently)
 		if (httpResponse.statusCode === 301) {
-			if ("location" in httpResponse.headers === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+			if ("location" in httpResponse.headers === false) {
+				/* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
 				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR("No location specified in the HTTP response headers.");
 			}
 
@@ -81,24 +78,29 @@ async function loadGCPlatformAPISpecFromCloud(gcRegion, { timeout = defaults.DEF
 
 		// Return the Genesys Cloud Platform API specification if the HTTP response status code is 200
 		if (httpResponse.statusCode === 200) {
-			if ("content-type" in httpResponse.headers === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+			if ("content-type" in httpResponse.headers === false) {
+				/* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
 				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR("No content type specified in the HTTP response headers.");
 			}
 
-			if (httpResponse.headers["content-type"].trim().toLowerCase().includes("application/json") === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+			if (httpResponse.headers["content-type"].trim().toLowerCase().includes("application/json") === false) {
+				/* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
 				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR('Invalid HTTP response content type, expected "application/json".');
 			}
 
-			if ("body" in httpResponse === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+			if ("body" in httpResponse === false) {
+				/* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
 				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR("The HTTP response does not have a body.");
 			}
 
 			// Verify that the HTTP response body has all the base properties of a Swagger file
-			if ("paths" in httpResponse.body === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+			if ("paths" in httpResponse.body === false) {
+				/* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
 				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR('The Genesys Cloud Platform API specification is missing the "paths" property.');
 			}
 
-			if ("definitions" in httpResponse.body === false) { /* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
+			if ("definitions" in httpResponse.body === false) {
+				/* istanbul ignore next: It is not possible to generate an Genesys Cloud error under normal operation */
 				throw new errors.ERROR_GENESYS_CLOUD_SERVICES_ERROR('The Genesys Cloud Platform API specification is missing the "definitions" property.');
 			}
 
@@ -119,4 +121,4 @@ async function loadGCPlatformAPISpecFromCloud(gcRegion, { timeout = defaults.DEF
 	}
 }
 
-module.exports = { loadGCPlatformAPISpecFromCloud };
+export { loadGCPlatformAPISpecFromCloud };

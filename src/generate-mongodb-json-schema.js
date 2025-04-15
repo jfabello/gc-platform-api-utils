@@ -49,7 +49,7 @@ constants.passthroughGCPlatformAPIDefinitionKeys = ["minimum", "maximum", "minIt
 Object.freeze(constants);
 
 // Errors
-const errors = require("./generate-mongodb-json-schema-errors.js");
+import { errors } from "./generate-mongodb-json-schema-errors.js";
 
 // Regexes
 const regexes = {};
@@ -237,4 +237,4 @@ function generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionNam
 	}
 }
 
-module.exports = { generateMongoDBJSONSchema };
+export { generateMongoDBJSONSchema };
