@@ -8,6 +8,7 @@ The `gc-platform-api-utils` package provides utility functions to work with the 
 
 ## Table of Contents
 
+- [What is New](#what-is-new)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Loading the Genesys Cloud API specification from the cloud](#loading-the-genesys-cloud-api-specification-from-the-cloud)
