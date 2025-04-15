@@ -22,6 +22,32 @@ The `gc-platform-api-utils` package provides utility functions to work with the 
 - [Contributing](#contributing)
 - [License](#license)
 
+## What is New
+
+### Version 0.5.0
+
+- The Genesys Cloud platform API utilities for Node.js is now an ES6 module. This provides better support for tools like ESLint 9 and a cleaner code syntax.
+- Updated the minimum Node.js engine version required to 20.
+
+### Version 0.4.0
+
+- Renamed the named exports `GC_PLATFORM_API_UTILS_ERRORS` to `errors`, and `GC_REGIONS` to `gcRegions`.
+
+### Version 0.3.0
+
+- Code refactoring.
+- Renamed the Genesys Cloud API utilities error object to `GC_PLATFORM_API_UTILS_ERRORS` to make it more noticeable that it is a constant.
+- Added the `GC_REGIONS` object to make it easier to know the available Genesys Cloud regions
+
+
+### Version 0.2.0
+
+- Added `gcPlatformAPIUtilsErrors` to the objects exported by the gc-platform-api-utils module.
+
+### Version 0.1.0
+
+- Initial release.
+
 ## Installation
 
 You can install this module via `npm`:
@@ -37,7 +63,7 @@ To use the `gc-platform-api-utils` package, import one, some or all of its funct
 ### Loading the Genesys Cloud API specification from the cloud
 
 ```javascript
-const { loadGCPlatformAPISpecFromCloud } = require('@jfabello/gc-platform-api-utils');
+import { loadGCPlatformAPISpecFromCloud } from '@jfabello/gc-platform-api-utils';
 
 async main() {
     const gcRegion = 'us-east-1';
@@ -51,7 +77,7 @@ main();
 ### Generating MongoDB JSON schemas for data validation
 
 ```javascript
-const { loadGCPlatformAPISpecFromCloud, generateMongoDBJSONSchema } = require('@jfabello/gc-platform-api-utils');
+import { loadGCPlatformAPISpecFromCloud, generateMongoDBJSONSchema } from '@jfabello/gc-platform-api-utils';
 
 async main() {
     const gcRegion = 'us-east-1';
@@ -67,7 +93,7 @@ main();
 ### Get the Genesys Cloud region URLs
 
 ```javascript
-const { getGCRegionURLs } = require('@jfabello/gc-platform-api-utils');
+import { getGCRegionURLs } from '@jfabello/gc-platform-api-utils';
 
 async main() {
 	const gcRegion = 'us-east-1';
