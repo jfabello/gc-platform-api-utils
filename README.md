@@ -9,14 +9,28 @@ The `gc-platform-api-utils` package provides utility functions to work with the 
 ## Table of Contents
 
 - [What is New](#what-is-new)
+  - [Version 0.5.0](#version-050)
+  - [Version 0.4.0](#version-040)
+  - [Version 0.3.0](#version-030)
+  - [Version 0.2.0](#version-020)
+  - [Version 0.1.0](#version-010)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Loading the Genesys Cloud API specification from the cloud](#loading-the-genesys-cloud-api-specification-from-the-cloud)
   - [Generating MongoDB JSON schemas for data validation](#generating-mongodb-json-schemas-for-data-validation)
   - [Get the Genesys Cloud region URLs](#get-the-genesys-cloud-region-urls)
 - [`generateMongoDBJSONSchema()` function](#generatemongodbjsonschema-function)
+  - [Parameters](#parameters)
+  - [Returns](#returns)
+  - [Throws](#throws)
 - [`getGCRegionURLs()` function](#getgcregionurls-function)
+  - [Parameters](#parameters-1)
+  - [Returns](#returns-1)
+  - [Throws](#throws-1)
 - [`loadGCPlatformAPISpecFromCloud()` function](#loadgcplatformapispecfromcloud-function)
+  - [Parameters](#parameters-2)
+  - [Returns](#returns-2)
+  - [Throws](#throws-2)
 - [`errors` object](#errors-object)
 - [`gcRegions` object](#gcregions-object)
 - [Testing](#testing)
@@ -66,13 +80,10 @@ To use the `gc-platform-api-utils` package, import one, some or all of its funct
 ```javascript
 import { loadGCPlatformAPISpecFromCloud } from '@jfabello/gc-platform-api-utils';
 
-async main() {
-    const gcRegion = 'us-east-1';
-    const gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud(gcRegion);
-    console.log(gcPlatformAPISpec);
-}
+const gcRegion = 'us-east-1';
+const gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud(gcRegion);
 
-main();
+console.log(gcPlatformAPISpec);
 ```
 
 ### Generating MongoDB JSON schemas for data validation
@@ -80,15 +91,12 @@ main();
 ```javascript
 import { loadGCPlatformAPISpecFromCloud, generateMongoDBJSONSchema } from '@jfabello/gc-platform-api-utils';
 
-async main() {
-    const gcRegion = 'us-east-1';
-    const gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud(gcRegion);
-	const gcPlatformAPIDefinitionName = 'Queue';
-	const mongoDBJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionName);
-	console.log(mongoDBJSONSchema);
-}
+const gcRegion = 'us-east-1';
+const gcPlatformAPISpec = await loadGCPlatformAPISpecFromCloud(gcRegion);
+const gcPlatformAPIDefinitionName = 'Queue';
+const mongoDBJSONSchema = generateMongoDBJSONSchema(gcPlatformAPISpec, gcPlatformAPIDefinitionName);
 
-main();
+console.log(mongoDBJSONSchema);
 ```
 
 ### Get the Genesys Cloud region URLs
@@ -96,13 +104,10 @@ main();
 ```javascript
 import { getGCRegionURLs } from '@jfabello/gc-platform-api-utils';
 
-async main() {
-	const gcRegion = 'us-east-1';
-	const gcRegionURLs = getGCRegionURLs(gcRegion);
-	console.log(gcRegionURLs);
-}
+const gcRegion = 'us-east-1';
+const gcRegionURLs = getGCRegionURLs(gcRegion);
 
-main();
+console.log(gcRegionURLs);
 ```
 
 ## `generateMongoDBJSONSchema()` function

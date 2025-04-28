@@ -34,7 +34,6 @@ let gcPlatformAPISpec = null;
 const logToConsole = new ConsoleLogger(ConsoleLogger.INFO);
 
 beforeAll(async () => {
-	console.log(path.join(__dirname, "tests", GC_PLATFORM_API_SPEC_FILE_NAME));
 	if (fs.existsSync(path.join(__dirname, GC_PLATFORM_API_SPEC_FILE_NAME)) === true && fs.statSync(path.join(__dirname, GC_PLATFORM_API_SPEC_FILE_NAME)).isFile() === true) {
 		// Loads the Genesys Cloud Platform API specification from a local file
 		logToConsole.info("Loading the Genesys Cloud Platform API specification from a local file...");
